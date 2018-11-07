@@ -37,24 +37,25 @@ public class Paises extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String url = "/JSP/";
 
         Locale locales[];
         locales = SimpleDateFormat.getAvailableLocales();
         TreeMap<String, String> countrys = new TreeMap<String, String>();
-        
+
         for (Locale locale : locales) {
-            System.out.println(locale.getCountry());
-            if(locale.getCountry().equals("") && locale.getLanguage().equals("")){
-                countrys.put(locale.getCountry(), locale.getLanguage());
+            
+            if (!locale.getCountry().equals("")) {
+                System.out.println(locale.getCountry());
+                countrys.put(locale.getDisplayCountry(),locale.getCountry()+"_"+locale.getLanguage() );
             }
         }
-        HttpSession paises=request.getSession();
+        HttpSession paises = request.getSession();
         paises.setAttribute("mapa", countrys);
-        request.getRequestDispatcher("/JSP/MostrarPaises.jsp").forward(request, response);
-        }
+        url+="PAISES/MostrarPaises.jsp";
         
-    
+        request.getRequestDispatcher(url).forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

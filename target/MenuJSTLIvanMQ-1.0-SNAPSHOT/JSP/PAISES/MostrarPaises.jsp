@@ -10,13 +10,15 @@
     <body>
         <h1>Eleccion</h1>
         <form action="PaisSeleccionado" method="POST">
-            <input type=""
-        </form>
-        <c:forEach var="item" items="${paises}">
+            
             <select>
-                <option value="-1">Elige un pa&aicute;s</option>
-                <option value="${item.value()}-${item.key()}">${item.key()}</option>         
+                <option value="-1">Elige un pa&iacute;s</option>
+                <c:forEach var="item" items="${mapa}">
+                <option value="${item.value}-${item.key}">${item.key}</option>
+                </c:forEach>
             </select> 
-        </c:forEach>
+            
+        </form>
+        
     </body>
 </html>
